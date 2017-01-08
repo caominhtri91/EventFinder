@@ -28,7 +28,7 @@ public class GroupDAO {
                 // whenever data at this location is updated.
                 List<Group> groupList = new ArrayList<Group>();
                 for (DataSnapshot groupSnapshot : dataSnapshot.getChildren()) {
-                    Group value = dataSnapshot.getValue(Group.class);
+                    Group value = groupSnapshot.getValue(Group.class);
                     groupList.add(value);
                 }
                 // Log.d("ReadDB", "Value is: " + value);
@@ -40,5 +40,9 @@ public class GroupDAO {
                 Log.w("ReadDB", "Failed to read value.", error.toException());
             }
         });
+    }
+
+    public void addGroupToDB(Group group) {
+        mDatabase.child("Group").child(String.valueOf(group.getId())).setValue(group);
     }
 }

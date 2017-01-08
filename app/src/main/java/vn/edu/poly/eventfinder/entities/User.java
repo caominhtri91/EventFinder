@@ -1,32 +1,60 @@
 package vn.edu.poly.eventfinder.entities;
 
-import com.google.android.gms.maps.model.LatLng;
-
 public class User {
-    private LatLng userPosition;
-    private String tel;
+    private String uid;
+    private String email;
+    private double userLatitude;
+    private double userLongitude;
+    private String phoneNumber;
 
     public User() {
     }
 
-    public User(LatLng userPosition, String tel) {
-        this.userPosition = userPosition;
-        this.tel = tel;
+    public User(String uid, String email, double userLatitude, double userLongitude, String phoneNumber) {
+        this.uid = uid;
+        this.email = email;
+        this.userLatitude = userLatitude;
+        this.userLongitude = userLongitude;
+        this.phoneNumber = phoneNumber;
     }
 
-    public LatLng getUserPosition() {
-        return userPosition;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUserPosition(LatLng userPosition) {
-        this.userPosition = userPosition;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getTel() {
-        return tel;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public double getUserLatitude() {
+        return userLatitude;
+    }
+
+    public void setUserLatitude(double userLatitude) {
+        this.userLatitude = userLatitude;
+    }
+
+    public double getUserLongitude() {
+        return userLongitude;
+    }
+
+    public void setUserLongitude(double userLongitude) {
+        this.userLongitude = userLongitude;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

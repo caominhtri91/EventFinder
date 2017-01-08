@@ -9,15 +9,7 @@
         <item name="android:textColorPrimary">@color/black_alpha_87</item>
         <item name="android:textColorSecondary">@color/grey600</item>
         <item name="colorButtonNormal">@color/theme500</item>
-        <item name="android:dialogTheme">@style/DialogTheme</item>
-        <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="android:alertDialogStyle">@style/DialogTheme</item>
         <item name="android:textColorLink">@color/theme500</item>
-    </style>
-
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- avoid duplicate background beneath the dialog -->
-        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
 </resources>

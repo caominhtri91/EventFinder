@@ -17,8 +17,8 @@ public class GroupsDAO {
         this.mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public int getGroupCount() {
-        final int[] i = {-1};
+    public long getGroupCount() {
+        final long[] i = {-1};
         mDatabase.child("GroupCount").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -38,14 +38,14 @@ public class GroupsDAO {
         return i[0];
     }
 
-    public void writeGroupCountOnDatabase(int i) {
+    public void writeGroupCountOnDatabase(long i) {
         Groups groups = new Groups();
         groups.setCount(i);
         mDatabase.child("GroupCount").setValue(groups);
     }
 
-    public int increaseGroupCount() {
-        int i = getGroupCount();
+    public long increaseGroupCount() {
+        long i = getGroupCount();
         return ++i;
     }
 }

@@ -1,8 +1,10 @@
 package vn.edu.poly.eventfinder;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +32,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import vn.edu.poly.eventfinder.daos.UserDAO;
+import vn.edu.poly.eventfinder.entities.User;
+
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -40,11 +45,15 @@ public class MainActivity extends AppCompatActivity implements
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
 
+    private UserDAO userDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+
+        userDAO = new UserDAO();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -75,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (user != null) {
                     // User is signed in
                     Log.d("AuthListener", "onAuthStateChanged:signed_in:" + user.getUid());
+                    userDAO = new UserDAO();
                     Intent i = new Intent(MainActivity.this, Index.class);
                     startActivity(i);
                 } else {
@@ -102,6 +112,10 @@ public class MainActivity extends AppCompatActivity implements
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 900);
+        }
     }
 
     @Override
@@ -158,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements
                         }
 
                         // ...
+                        userDAO.writeUser(new User(userDAO.getCurrentUserUID(), userDAO.getCurrentUserEmail(), 0, 0, ""));
                     }
                 });
     }
@@ -187,6 +202,8 @@ public class MainActivity extends AppCompatActivity implements
                                     Toast.LENGTH_SHORT).show();
                         }
                         // ...
+
+                        userDAO.writeUser(new User(userDAO.getCurrentUserUID(), userDAO.getCurrentUserEmail(), 0, 0, ""));
                     }
                 });
     }

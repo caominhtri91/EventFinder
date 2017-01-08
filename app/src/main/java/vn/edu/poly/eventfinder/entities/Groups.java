@@ -1,20 +1,20 @@
 package vn.edu.poly.eventfinder.entities;
 
 public class Groups {
-    private int count;
+    private long count;
 
     public Groups() {
     }
 
-    public Groups(int count) {
+    public Groups(long count) {
         this.count = count;
     }
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         this.count = count;
     }
 }

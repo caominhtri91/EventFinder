@@ -15,5 +15,14 @@
 
     <string name="action_settings">Settings</string>
     <string name="googleloginText">Sign in with Google</string>
+    <string name="titleDialogAddGroup">Add Group</string>
+    <string name="positiveDialogAddGroup">Add</string>
+    <string name="negativeDialogAddGroup">Cancel</string>
+    <string name="group_name">Group name</string>
+    <string name="groupDescription">Description</string>
+    <string name="phone_number_input">Phone Number</string>
+    <string name="phone_number_dialog_content">Please enter your phone number</string>
+    <string name="input_hint_phone">Phone number</string>
+    <string name="input_prefill" />
 
 </resources>
